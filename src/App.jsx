@@ -1,63 +1,56 @@
-import logo from './logo.svg';
 import React from 'react';
 import { useState } from 'react';
 import './App.css';
+import Button from './Components/Button';
+import Screen from './Components/Screen'
 
 const lineOne = [
-  [1],
-  [2],
-  [3],
-  ["x"]
+  1,
+  2,
+  3,
+  "x"
 ]
 const lineTwo = [
-  [4],
-  [5],
-  [6],
-  ["-"]
+  4,
+  5,
+  6,
+  "-"
 ]
 const lineThree = [
-  [7],
-  [8],
-  [9],
-  ["/"]
+  7,
+  8,
+  9,
+  "/"
 ]
 const lineFour = [
-  [0],
-  ["."],
-  ["+"]
+  0,
+  ".",
+  "+"
 ]
     
-function App() {
-  const [total, setTotal] = React.useState(0);
-  const [number, setNumber] = React.useState(0);
-  const [equation, setEquation] = React.useState(0);
+const App = () => {
+  let [calc, setCalc] = useState({
+    sign: "",
+    num: 0,
+    res: 0
+  })
     return (
     <>
-      <input type="text"></input>{number}
+      <Screen value={calc.num ? calc.num : calc.res}></Screen>
       <table className='calculator'>
         <tbody>
           <tr>
-            <td><input type="button" value="C" onClick={()=> setNumber(0)}></input></td>
+            <td><input type="button" value="C" onClick={()=> setCalc(0)}></input></td>
           </tr>
           <tr>
-            {lineOne.map(value => {
-              return (<td> <input onClick={()=> setNumber(value)} type="button" value={value}></input></td>)
+            {lineOne.map((button, i) => {
+              return <td>
+                <Button 
+                key={i} 
+                onClick={()=>console.log(button)}
+                value={button}
+                ></Button></td>
             })}
-          </tr>
-          <tr>
-          {lineTwo.map(value => {
-              return (<td> <input onClick={()=> setNumber(value)} type="button" value={value}></input></td>)
-            })}
-          </tr>
-          <tr>{lineThree.map(value => {
-              return (<td> <input onClick={()=> setNumber(value)} type="button" value={value}></input></td>)
-            })}
-          </tr>
-          <tr>
-          {lineFour.map(value => {
-              return (<td> <input onClick={()=> setNumber(value)} type="button" value={value}></input></td>)
-            })}
-            
           </tr>
           </tbody>
         </table>
