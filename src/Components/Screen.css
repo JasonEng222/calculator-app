@@ -1,7 +1,9 @@
 .screen {
+    background-color: #ece798c9;
     display: flex;
     justify-content: flex-end;
     align-items: center;
     width: 100%;
+    height: 10%;
     margin-bottom: 10px;
 }
