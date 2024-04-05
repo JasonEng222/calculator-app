@@ -4,28 +4,14 @@ import './App.css';
 import Button from './Components/Button';
 import Screen from './Components/Screen'
 
-const lineOne = [
-  1,
-  2,
-  3,
-  "x"
-]
-const lineTwo = [
-  4,
-  5,
-  6,
-  "-"
-]
-const lineThree = [
-  7,
-  8,
-  9,
-  "/"
-]
-const lineFour = [
-  0,
-  ".",
-  "+"
+
+const buttons = [
+  ["%","CE","C","/"],
+  [7,8,9,"/"],
+  [4,5,6,"-"],
+  [1,2,3,"x"],
+  ["+/-",0,".","+"],
+  ["="]
 ]
     
 const App = () => {
@@ -43,13 +29,13 @@ const App = () => {
             <td><input type="button" value="C" onClick={()=> setCalc(0)}></input></td>
           </tr>
           <tr>
-            {lineOne.map((button, i) => {
+            {buttons.flat().map((button, i) => {
               return <td>
                 <Button 
                 key={i} 
                 onClick={()=>console.log(button)}
-                value={button}
-                ></Button></td>
+                value={button}>
+                </Button></td>
             })}
           </tr>
           </tbody>
