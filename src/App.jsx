@@ -24,8 +24,8 @@ const App = () => {
   
   const numberHandler = (e) => {
     e.preventDefault()
-
     const value = e.target.innerHTML
+
     setCalc({
       ...calc,
       num: calc.num === 0 && value ==="0"
@@ -33,7 +33,7 @@ const App = () => {
       : calc.num % 1 === 0 
       ? Number(calc.num+value)
       :calc.num + value,
-      calculated: !calc.num ? 0 : calc.calculated
+      calculated: !calc.sign ? 0 : calc.calculated
     })
   }
 
@@ -84,8 +84,10 @@ const App = () => {
         sign: value,
         calculated: calc.num && !calc.calculated ? calc.num: calc.calculated,
         num: 0 
+        
       })
-
+      
+      console.log(calc)
   }
   
   const dotHandler = (e) => {
@@ -98,13 +100,13 @@ const App = () => {
   }
 
   const equalsHandler = () => {
+    console.log(calc)
     if (calc.sign && calc.num) {
       const math = (a, b, sign) => 
-        sign === "+" ? a + b 
-        :sign === "/" ? a / b
-        :sign === "-" ? a - b
-        : a * b
-      console.log(calc)
+      sign === "+" ? a + b 
+      :sign === "/" ? a / b
+      :sign === "-" ? a - b
+      : a * b
       
       setCalc({
         ...calc, 
