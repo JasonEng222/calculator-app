@@ -21,6 +21,10 @@ const App = () => {
     num: 0,
     calculated: 0
   })
+
+  let [previousCalc, setPreviousCalc] = useState({
+    calculation: []
+  })
   
   const numberHandler = (e) => {
     e.preventDefault()
@@ -74,7 +78,7 @@ const App = () => {
       calculated:0
     })
   }
-
+  
   const operationHandler = (e) => {
       e.preventDefault()
       console.log(calc)
@@ -116,11 +120,15 @@ const App = () => {
         sign: "",
         num: 0
       })
-      console.log(calc)
+      setPreviousCalc({
+        ...previousCalc,
+        calculation: `${calc.calculated} ${calc.sign} ${calc.num}` 
+      })
     }
   }
 
     return (
+    <div>
     <div className='calculator-wrapper'>  
       <Screen value={calc.num ? calc.num : calc.calculated}></Screen>
       <Buttonwrapper>
@@ -142,6 +150,11 @@ const App = () => {
             </Button>)
         })}
       </Buttonwrapper>
+      {/* <div className='previous-calculation'>{previousCalc.calculation.map((calculation) => {
+        return {calculation}
+      })}</div> */}
+  </div>
+      <div>Previous Calculation: {previousCalc.calculation}</div>
   </div>
   );
 }
